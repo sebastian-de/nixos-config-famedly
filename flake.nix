@@ -35,7 +35,7 @@
             home-manager.backupFileExtension = "backup";
             home-manager.overwriteBackup = true;
             home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
-            home-manager.users.sepp = import ./home.nix;
+            home-manager.users.sepp = import ./home-manager/home.nix;
           }
         ];
         specialArgs.flake-inputs = inputs;
