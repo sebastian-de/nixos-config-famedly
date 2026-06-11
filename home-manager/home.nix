@@ -38,6 +38,7 @@
 
   home.packages = with pkgs; [
     chromium # for captive-browser
+    delta
     element-desktop
     eza
     fishPlugins.fzf-fish
