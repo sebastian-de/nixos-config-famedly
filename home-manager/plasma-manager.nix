@@ -65,10 +65,27 @@
         ];
       }
     ];
-    input.keyboard.layouts = [
+    input.keyboard = {
+      layouts = [
+        {
+          layout = "de";
+          variant = "nodeadkeys";
+        }
+      ];
+      options = [
+        "caps:escape"
+      ];
+    };
+    input.touchpads = [
       {
-        layout = "de";
-        variant = "nodeadkeys";
+        disableWhileTyping = true;
+        enable = true;
+        middleButtonEmulation = false;
+        name = "SYNA8018:00 06CB:CE67 Touchpad";
+        naturalScroll = true;
+        productId = "ce67";
+        tapToClick = true;
+        vendorId = "06cb";
       }
     ];
     shortcuts = {
@@ -83,13 +100,9 @@
       dolphinrc.DetailsMode.PreviewSize = 22;
       dolphinrc.General.OpenExternallyCalledFolderInNewTab = true;
 
-      kcminputrc."Libinput/1739/52839/SYNA8018:00 06CB:CE67 Touchpad".NaturalScroll = true;
-
       kdeglobals.Sounds.Enable = false;
 
       klipperrc.General.MaxClipItems = 100;
-
-      kxkbrc.Layout.Options = "caps:escape";
 
       plasma-localerc.Formats.LANG = "en_US.UTF-8";
       plasma-localerc.Formats.LC_ADDRESS = "de_DE.UTF-8";
