@@ -5,6 +5,10 @@ Nix configuration including settings for
 - [Home Manager](https://github.com/nix-community/home-manager)
 - [plasma-manager](https://github.com/nix-community/plasma-manager)
 
+Includes the [Famedly NixOS flake](https://github.com/famedly/famedly-nixos).
+
+Matrix room: [#nix:famedly.de](https://matrix.to/#/#nix:famedly.de)
+
 ## Building a VM
 
 On NixOS:
