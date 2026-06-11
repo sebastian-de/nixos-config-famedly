@@ -189,6 +189,12 @@
     pinentryPackage = pkgs.pinentry-qt;
   };
 
+  # see https://wiki.nixos.org/wiki/Appimage
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   # only used for build-vm
   virtualisation.vmVariant = {
     virtualisation = {
