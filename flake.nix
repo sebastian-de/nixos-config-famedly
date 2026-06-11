@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-26.05";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -21,6 +25,7 @@
       famedly-nixos,
       home-manager,
       plasma-manager,
+      nixvim,
       ...
     }@inputs:
     {
@@ -34,7 +39,10 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.overwriteBackup = true;
-            home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+            home-manager.sharedModules = [
+              plasma-manager.homeModules.plasma-manager
+              nixvim.homeModules.nixvim
+            ];
             home-manager.users.sepp = import ./home-manager/home.nix;
           }
         ];

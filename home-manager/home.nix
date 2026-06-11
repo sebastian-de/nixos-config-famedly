@@ -2,6 +2,7 @@
 {
   imports = [
     ./plasma-manager.nix
+    ./nixvim.nix
   ];
 
   # https://nix-community.github.io/home-manager/options.xhtml

@@ -4,6 +4,7 @@ Nix configuration including settings for
 
 - [Home Manager](https://github.com/nix-community/home-manager)
 - [plasma-manager](https://github.com/nix-community/plasma-manager)
+- [nixvim](https://github.com/nix-community/nixvim)
 
 Includes the [Famedly NixOS flake](https://github.com/famedly/famedly-nixos).
 

@@ -59,6 +59,27 @@
         "type": "github"
       }
     },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "nixvim",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778716662,
+        "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "fleet-nixos": {
       "inputs": {
         "nixpkgs": [
@@ -87,11 +108,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781115013,
-        "narHash": "sha256-3BopHqMvh26sKim6rumZBY568VrISCWtRgqDuLGR/H0=",
+        "lastModified": 1781184346,
+        "narHash": "sha256-cZRlW47U6A2nWvAmnZeeO6Xvq23gxYbVLel4KxqOrcQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "fcbbf5484ab2c733e886ef4fa91e8da1c8c028f5",
+        "rev": "ea6d221d7aa85652d014b6f719dddf036037515b",
         "type": "github"
       },
       "original": {
@@ -146,6 +167,43 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1780453794,
+        "narHash": "sha256-bXMRa9VTsHSPXL4Cw8R6JJLQeY3Y/IP4+YJCYVmQ7FY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "6b316287bae2ee04c9b93c8c858d930fd07d7338",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixvim": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": "nixpkgs_3",
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1781038653,
+        "narHash": "sha256-MxUVyE7A5QMJXOEFQhOHsqs4UPhujeDgdFhguE7Wmic=",
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "rev": "e7ce6708cc5b6275406a8feee06ca50c5cafd6bf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "nixos-26.05",
+        "repo": "nixvim",
+        "type": "github"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -174,6 +232,7 @@
         "famedly-nixos": "famedly-nixos",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
+        "nixvim": "nixvim",
         "plasma-manager": "plasma-manager"
       }
     },
@@ -191,6 +250,21 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
         "type": "github"
       }
     }
