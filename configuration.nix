@@ -189,6 +189,12 @@
     pinentryPackage = pkgs.pinentry-qt;
   };
 
+  # Dedicated Chrome instance to log into captive portals without messing with DNS settings
+  programs.captive-browser = {
+    enable = true;
+    interface = "wlp0s20f3";
+  };
+
   # see https://wiki.nixos.org/wiki/Appimage
   programs.appimage = {
     enable = true;

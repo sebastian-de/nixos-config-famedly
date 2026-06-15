@@ -34,11 +34,8 @@
     ];
   };
 
-  # Dedicated Chrome instance to log into captive portals without messing with DNS settings
-  # programs.captive-browser.enable = true;
-
   home.packages = with pkgs; [
-    chromium # for captive-browser
+    chromium
     delta
     element-desktop
     eza
