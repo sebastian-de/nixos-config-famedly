@@ -96,6 +96,11 @@
     pulse.enable = true;
   };
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
+
   # Misc system services
   services.kmscon = {
     enable = true;
@@ -164,6 +169,7 @@
   environment.systemPackages = with pkgs; [
     dnsmasq
     git
+    kdePackages.bluedevil
     nano
     neovim
     swtpm
