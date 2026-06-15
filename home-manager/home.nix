@@ -54,16 +54,21 @@
     keepassxc
     kubectl
     kubelogin-oidc
+    kubernetes-helm
     nil
     nixfmt
     openpgp-card-tools
     openssl
+    opentofu
     p7zip
     pcsc-tools
     ripgrep
     rsync
+    rsync
     thunderbird
+    typst
     unzip
+    uv
     wayland-utils
     wireshark
     wl-clipboard
