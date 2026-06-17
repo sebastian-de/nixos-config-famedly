@@ -42,6 +42,7 @@
     fishPlugins.fzf-fish
     fishPlugins.z
     fzf
+    hcloud
     htop
     jq
     kdePackages.kate
