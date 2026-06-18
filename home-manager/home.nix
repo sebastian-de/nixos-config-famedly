@@ -62,8 +62,6 @@
     pcsc-tools
     ripgrep
     rsync
-    rsync
-    thunderbird
     typst
     unzip
     uv
@@ -78,15 +76,29 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      # firefox
       "application/x-extension-htm" = "firefox.desktop";
       "application/x-extension-html" = "firefox.desktop";
       "application/x-extension-shtml" = "firefox.desktop";
       "application/x-extension-xht" = "firefox.desktop";
       "application/x-extension-xhtml" = "firefox.desktop";
       "application/xhtml+xml" = "firefox.desktop";
-
       "x-scheme-handler/http" = "firefox.desktop";
       "x-scheme-handler/https" = "firefox.desktop";
+
+      # thunderbird
+      "application/x-extension-ics" = "thunderbird.desktop";
+      "message/rfc822" = "thunderbird.desktop";
+      "text/calendar" = "thunderbird.desktop";
+      "x-scheme-handler/mailto" = "thunderbird.desktop";
+      "x-scheme-handler/mid" = "thunderbird.desktop";
+      "x-scheme-handler/news" = "thunderbird.desktop";
+      "x-scheme-handler/nntp" = "thunderbird.desktop";
+      "x-scheme-handler/snews" = "thunderbird.desktop";
+      "x-scheme-handler/webcal" = "thunderbird.desktop";
+      "x-scheme-handler/webcals" = "thunderbird.desktop";
+
+      # element
       "x-scheme-handler/io.element.desktop" = "io.element.Element.desktop";
       "x-scheme-handler/element" = "io.element.Element.desktop";
     };
