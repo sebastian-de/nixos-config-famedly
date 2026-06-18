@@ -17,6 +17,7 @@
       url = "github:nix-community/nixvim/nixos-26.05";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database.url = "github:nix-community/nix-index-database";
   };
 
   outputs =
@@ -26,6 +27,7 @@
       home-manager,
       plasma-manager,
       nixvim,
+      nix-index-database,
       ...
     }@inputs:
     {
@@ -42,6 +44,7 @@
             home-manager.sharedModules = [
               plasma-manager.homeModules.plasma-manager
               nixvim.homeModules.nixvim
+              nix-index-database.homeModules.default
             ];
             home-manager.users.sepp = import ./home-manager/home.nix;
           }

@@ -213,6 +213,9 @@
     binfmt = true;
   };
 
+  # see https://github.com/nix-community/nix-index
+  programs.nix-index.enable = true;
+
   # only used for build-vm
   virtualisation.vmVariant = {
     virtualisation = {
