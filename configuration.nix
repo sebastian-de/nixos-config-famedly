@@ -101,6 +101,9 @@
     powerOnBoot = false;
   };
 
+  # Enable fingerprint scanner
+  services.fprintd.enable = true;
+
   # Misc system services
   services.kmscon = {
     enable = true;
