@@ -31,12 +31,14 @@
       # opentofu.vscode-opentofu
       # streetsidesoftware.code-spell-checker-medical-terms
       # streetsidesoftware.code-spell-checker-scientific-terms
+      # tilt-dev.tiltfile
     ];
   };
 
   home.packages = with pkgs; [
     chromium
     delta
+    dnsutils
     element-desktop
     eza
     fishPlugins.fzf-fish
@@ -62,10 +64,14 @@
     pcsc-tools
     ripgrep
     rsync
+    talos-pilot
+    talosctl
+    tilt
     typst
     unzip
     uv
     wayland-utils
+    wget
     wireshark
     wl-clipboard
     xz
