@@ -149,12 +149,23 @@
   '';
   programs.virt-manager.enable = true;
 
+  # Enable docker
+  virtualisation.docker = {
+    enable = true;
+    # Talos didn't work with rootless docker
+    # rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sepp = {
     isNormalUser = true;
     description = "Sebastian Fleer";
     shell = pkgs.fish;
     extraGroups = [
+      "docker"
       "libvirtd"
       "networkmanager"
       "wheel"
