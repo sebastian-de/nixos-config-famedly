@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
-    famedly-nixos.url = "git+ssh://git@github.com/famedly/famedly-nixos";
+    famedly-nixos.url = "github:famedly/famedly-nixos";
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
