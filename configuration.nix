@@ -20,6 +20,9 @@
     "flakes"
   ];
 
+  # Enable nix-ld: https://wiki.nixos.org/wiki/Nix-ld
+  programs.nix-ld.enable = true;
+
   # see https://github.com/famedly/famedly-nixos#cachix
   famedly-cachix.enable = true;
   nix.extraOptions = ''
