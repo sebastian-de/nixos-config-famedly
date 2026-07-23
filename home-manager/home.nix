@@ -28,6 +28,7 @@
       streetsidesoftware.code-spell-checker
       streetsidesoftware.code-spell-checker-german
       # not available via Nix, yet:
+      # gruntwork.terragrunt-ls
       # opentofu.vscode-opentofu
       # streetsidesoftware.code-spell-checker-medical-terms
       # streetsidesoftware.code-spell-checker-scientific-terms
@@ -45,8 +46,10 @@
     fishPlugins.z
     fzf
     hcloud
+    headlamp
     htop
     jq
+    just
     kdePackages.kate
     kdePackages.okular
     kdePackages.partitionmanager
@@ -64,6 +67,7 @@
     pcsc-tools
     ripgrep
     rsync
+    scaleway-cli
     talos-pilot
     talosctl
     tilt
