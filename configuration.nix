@@ -246,6 +246,18 @@
   # see https://github.com/nix-community/nix-index
   programs.nix-index.enable = true;
 
+  # https://wiki.nixos.org/wiki/OBS_Studio
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+      obs-vaapi # optional AMD hardware acceleration
+      obs-gstreamer
+    ];
+  };
+
   # only used for build-vm
   virtualisation.vmVariant = {
     virtualisation = {
