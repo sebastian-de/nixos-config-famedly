@@ -13,12 +13,14 @@
   programs.home-manager.enable = true;
   programs.fish.enable = true;
   programs.starship.enable = true;
+  programs.direnv.enable = true;
 
   programs.vscode = {
     enable = true;
     profiles.default.extensions = with pkgs.vscode-extensions; [
       charliermarsh.ruff
       jnoortheen.nix-ide
+      mkhl.direnv
       ms-kubernetes-tools.vscode-kubernetes-tools
       ms-python.debugpy
       ms-python.python
