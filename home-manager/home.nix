@@ -69,6 +69,7 @@
     kubernetes-helm
     nil
     nixfmt
+    mpv
     openpgp-card-tools
     openssl
     opentofu
