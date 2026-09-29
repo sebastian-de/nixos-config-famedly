@@ -18,6 +18,7 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database.url = "github:nix-community/nix-index-database";
+    unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
   outputs =
@@ -28,6 +29,7 @@
       plasma-manager,
       nixvim,
       nix-index-database,
+      unstable,
       ...
     }@inputs:
     {
@@ -46,6 +48,7 @@
               nixvim.homeModules.nixvim
               nix-index-database.homeModules.default
             ];
+            home-manager.extraSpecialArgs.flake-inputs = inputs;
             home-manager.users.sepp = import ./home-manager/home.nix;
           }
         ];

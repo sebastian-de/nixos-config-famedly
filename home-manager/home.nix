@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, flake-inputs, ... }:
+let
+  unstable = flake-inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   imports = [
     ./plasma-manager.nix
