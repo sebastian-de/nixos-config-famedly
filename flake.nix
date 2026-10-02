@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
-    famedly-nixos.url = "github:famedly/famedly-nixos";
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,15 +22,14 @@
   outputs =
     {
       nixpkgs,
-      famedly-nixos,
       home-manager,
       plasma-manager,
       nixvim,
       nix-index-database,
       ...
-    }@inputs:
+    }:
     {
-      nixosConfigurations.burrito = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.dosa = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
@@ -49,7 +47,6 @@
             home-manager.users.sepp = import ./home-manager/home.nix;
           }
         ];
-        specialArgs.flake-inputs = inputs;
       };
     };
 }

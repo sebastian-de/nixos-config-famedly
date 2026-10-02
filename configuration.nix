@@ -2,16 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{
-  pkgs,
-  flake-inputs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    flake-inputs.famedly-nixos.nixosModules.default
   ];
 
   # Enable flakes
@@ -23,12 +18,6 @@
   # Enable nix-ld: https://wiki.nixos.org/wiki/Nix-ld
   programs.nix-ld.enable = true;
 
-  # see https://github.com/famedly/famedly-nixos#cachix
-  famedly-cachix.enable = true;
-  nix.extraOptions = ''
-    netrc-file = /etc/nix/netrc
-  '';
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -36,7 +25,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "burrito"; # Define your hostname.
+  networking.hostName = "dosa"; # Define your hostname.
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Enable NetWorkManager

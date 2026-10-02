@@ -10,6 +10,12 @@ Includes the [Famedly NixOS flake](https://github.com/famedly/famedly-nixos).
 
 Matrix room: [#nix:famedly.de](https://matrix.to/#/#nix:famedly.de)
 
+## Validate config
+
+```sh
+nix eval .#nixosConfigurations.dosa.config.system.build.toplevel.drvPath
+```
+
 ## Building a VM
 
 On NixOS:
@@ -19,7 +25,7 @@ nixos-rebuild build-vm --flake .
 
 On Non-NixOS:
 ```sh
-nix build -L .#nixosConfigurations.burrito.config.system.build.vm
+nix build -L .#nixosConfigurations.dosa.config.system.build.vm
 ```
 
 The VM can than be run from `./result/bin/run-nixos-vm`
