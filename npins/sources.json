@@ -7,11 +7,11 @@
         "owner": "nix-community",
         "repo": "home-manager"
       },
-      "branch": "release-26.05",
+      "branch": "master",
       "submodules": false,
-      "revision": "e5fcd298a00f08b6e8390baf04aa8edb62203070",
-      "url": "https://github.com/nix-community/home-manager/archive/e5fcd298a00f08b6e8390baf04aa8edb62203070.tar.gz",
-      "hash": "sha256-kaNo6xHiL31AbNNEreG0OTKf4j6Cxlo5bPawjX7lnbQ="
+      "revision": "0560d64401a6d5370732a69d08bc4a6b135962d9",
+      "url": "https://github.com/nix-community/home-manager/archive/0560d64401a6d5370732a69d08bc4a6b135962d9.tar.gz",
+      "hash": "sha256-EEQKUylD8zuRTmDFX4rbwsHQ+iZhqqOldYcFN8SLcE0="
     },
     "nix-index-database": {
       "type": "Git",
@@ -33,19 +33,6 @@
         "owner": "NixOS",
         "repo": "nixpkgs"
       },
-      "branch": "nixos-26.05",
-      "submodules": false,
-      "revision": "774debe7a0d1b496e35677ad955a1011c6ff74f3",
-      "url": "https://github.com/NixOS/nixpkgs/archive/774debe7a0d1b496e35677ad955a1011c6ff74f3.tar.gz",
-      "hash": "sha256-nQyFkMR78WP6PiXKkDW2SjqzLf/spQqjRuxRGSbcV8k="
-    },
-    "nixpkgs-unstable": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "NixOS",
-        "repo": "nixpkgs"
-      },
       "branch": "nixos-unstable",
       "submodules": false,
       "revision": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
@@ -59,11 +46,11 @@
         "owner": "nix-community",
         "repo": "nixvim"
       },
-      "branch": "nixos-26.05",
+      "branch": "main",
       "submodules": false,
-      "revision": "4836e77b1798cd42e2de28593bec4c1788da08f5",
-      "url": "https://github.com/nix-community/nixvim/archive/4836e77b1798cd42e2de28593bec4c1788da08f5.tar.gz",
-      "hash": "sha256-9oBHyJtUyunZL+6v0Ub8Y759cXcejQiTHpXtGcx5RLs="
+      "revision": "1cdfef1a6eb583d65b606b04fc97687491479d62",
+      "url": "https://github.com/nix-community/nixvim/archive/1cdfef1a6eb583d65b606b04fc97687491479d62.tar.gz",
+      "hash": "sha256-EeMn6SmrBe4gnxaMyb3NZYMXG8FPF9PY0OCcbPDFFNI="
     },
     "plasma-manager": {
       "type": "Git",

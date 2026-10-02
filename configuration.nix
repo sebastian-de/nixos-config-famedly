@@ -29,17 +29,6 @@ in
   # constructs NIX_PATH at invocation time.
   nixpkgs.flake.source = sources.nixpkgs;
 
-  # Make packages from nixos-unstable available as pkgs.unstable.<name>.
-  # Inherits this config's nixpkgs config (allowUnfree, packageOverrides).
-  nixpkgs.overlays = [
-    (final: prev: {
-      unstable = import sources.nixpkgs-unstable {
-        system = prev.stdenv.hostPlatform.system;
-        inherit (prev) config;
-      };
-    })
-  ];
-
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "backup";
@@ -152,13 +141,10 @@ in
   # Misc system services
   services.kmscon = {
     enable = true;
-    hwRender = true;
-    fonts = [
-      {
-        name = "FiraCode Nerd Font";
-        package = pkgs.nerd-fonts.fira-code;
-      }
-    ];
+    config = {
+      hwaccel = true;
+      font-name = "FiraCode Nerd Font";
+    };
     extraOptions = "--xkb-layout de --xkb-variant nodeadkeys";
   };
   services.pcscd.enable = true;

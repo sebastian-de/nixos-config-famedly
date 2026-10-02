@@ -56,10 +56,6 @@ npins update
 
 Then rebuild as above. To update a single pin: `npins update nixpkgs`.
 
-## Packages from nixos-unstable
-
-`nixos-unstable` is available as an overlay, so packages from unstable can be added as `pkgs.unstable.<name>` in both NixOS and home-manager modules.
-
 ## Switching the nixpkgs branch
 
 ```sh
@@ -73,7 +69,7 @@ npins add github nix-community home-manager --branch master  # release-26.05 pai
 npins add github nix-community nixvim --branch main          # nixos-26.05 branch pairs with nixos-26.05
 ```
 
-plasma-manager (`trunk`) and nix-index-database (`main`) are release-independent and stay as they are. If you switch the main pin to `nixos-unstable`, drop the `nixpkgs-unstable` pin and the overlay in `configuration.nix`.
+plasma-manager (`trunk`) and nix-index-database (`main`) are release-independent and stay as they are.
 
 Then verify and activate:
 
