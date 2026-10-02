@@ -25,6 +25,17 @@ in
   # constructs NIX_PATH at invocation time.
   nixpkgs.flake.source = sources.nixpkgs;
 
+  # Make packages from nixos-unstable available as pkgs.unstable.<name>.
+  # Inherits this config's nixpkgs.config (allowUnfree, packageOverrides).
+  nixpkgs.overlays = [
+    (final: prev: {
+      unstable = import sources.nixpkgs-unstable {
+        system = prev.stdenv.hostPlatform.system;
+        inherit (prev) config;
+      };
+    })
+  ];
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "backup";

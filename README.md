@@ -55,6 +55,10 @@ npins update
 
 Then rebuild as above. To update a single pin: `npins update nixpkgs`.
 
+## Packages from nixos-unstable
+
+`nixos-unstable` is available as an overlay, so packages from unstable can be added as `pkgs.unstable.<name>` in both NixOS and home-manager modules.
+
 ## Switching the nixpkgs branch
 
 ```sh

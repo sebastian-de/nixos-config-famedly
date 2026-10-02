@@ -48,7 +48,6 @@
     fishPlugins.z
     fzf
     hcloud
-    headlamp
     htop
     jq
     just
@@ -83,6 +82,9 @@
     xz
     yq-go
     zip
+
+    # nixos-unstable
+    unstable.headlamp
   ];
 
   xdg.mimeApps = {
