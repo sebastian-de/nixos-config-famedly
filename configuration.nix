@@ -4,9 +4,13 @@
 
 { pkgs, ... }:
 
+let
+  sources = import ./npins;
+in
 {
   imports = [
     ./hardware-configuration.nix
+    (sources.home-manager + "/nixos")
   ];
 
   # Enable flakes
@@ -14,6 +18,23 @@
     "nix-command"
     "flakes"
   ];
+
+  # Pin <nixpkgs> and the nixpkgs flake registry entry to the npins-pinned
+  # source, so nix-shell/nix run nixpkgs#... use the same nixpkgs as the system.
+  # nixos-config is deliberately not in NIX_PATH; use ./rebuild.sh, which
+  # constructs NIX_PATH at invocation time.
+  nixpkgs.flake.source = sources.nixpkgs;
+
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.backupFileExtension = "backup";
+  home-manager.overwriteBackup = true;
+  home-manager.sharedModules = [
+    (sources.plasma-manager + "/modules")
+    (import sources.nixvim).homeModules.nixvim
+    (sources.nix-index-database + "/home-manager-module.nix")
+  ];
+  home-manager.users.sepp = import ./home-manager/home.nix;
 
   # Enable nix-ld: https://wiki.nixos.org/wiki/Nix-ld
   programs.nix-ld.enable = true;
@@ -197,6 +218,7 @@
     kdePackages.bluedevil
     nano
     neovim
+    npins
     swtpm
   ];
 
