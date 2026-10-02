@@ -6,6 +6,10 @@
 
 let
   sources = import ./npins;
+  # Nixvim's public non-flake entrypoint: extends nixpkgs lib with nixvim's
+  # helpers, avoiding the flake-compat default.nix (which would fetch
+  # flake-parts and a second nixpkgs tarball at evaluation time).
+  nixvimLib = pkgs.lib.extend (import (sources.nixvim + "/lib/overlay.nix"));
 in
 {
   imports = [
@@ -26,7 +30,7 @@ in
   nixpkgs.flake.source = sources.nixpkgs;
 
   # Make packages from nixos-unstable available as pkgs.unstable.<name>.
-  # Inherits this config's nixpkgs.config (allowUnfree, packageOverrides).
+  # Inherits this config's nixpkgs config (allowUnfree, packageOverrides).
   nixpkgs.overlays = [
     (final: prev: {
       unstable = import sources.nixpkgs-unstable {
@@ -42,10 +46,11 @@ in
   home-manager.overwriteBackup = true;
   home-manager.sharedModules = [
     (sources.plasma-manager + "/modules")
-    (import sources.nixvim).homeModules.nixvim
+    # Equivalent to the flake's homeModules.nixvim output
+    (nixvimLib.nixvim.evalNixvim { modules = [ { _module.check = false; } ]; }).config.build.homeModule
     (sources.nix-index-database + "/home-manager-module.nix")
   ];
-  home-manager.users.sepp = import ./home-manager/home.nix;
+  home-manager.users.sepp = ./home-manager/home.nix;
 
   # Enable nix-ld: https://wiki.nixos.org/wiki/Nix-ld
   programs.nix-ld.enable = true;

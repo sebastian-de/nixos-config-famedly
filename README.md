@@ -32,9 +32,10 @@ On NixOS:
 ./rebuild.sh build-vm
 ```
 
-On Non-NixOS:
+On Non-NixOS (mirrors the NIX_PATH that `rebuild.sh` constructs):
+
 ```sh
-nix-build '<nixpkgs/nixos>' -A vm -I nixpkgs=$(nix eval --raw -f ./npins nixpkgs) -I nixos-config=$PWD/configuration.nix
+nix-build '<nixpkgs/nixos>' -A vm -I nixpkgs="$(nix eval --raw -f ./npins/default.nix nixpkgs.outPath)" -I "nixos-config=$PWD/configuration.nix"
 ```
 
 The VM can than be run from `./result/bin/run-nixos-vm`
@@ -72,7 +73,7 @@ npins add github nix-community home-manager --branch master  # release-26.05 pai
 npins add github nix-community nixvim --branch main          # nixos-26.05 branch pairs with nixos-26.05
 ```
 
-plasma-manager (`trunk`) and nix-index-database (`main`) are release-independent and stay as they are.
+plasma-manager (`trunk`) and nix-index-database (`main`) are release-independent and stay as they are. If you switch the main pin to `nixos-unstable`, drop the `nixpkgs-unstable` pin and the overlay in `configuration.nix`.
 
 Then verify and activate:
 
