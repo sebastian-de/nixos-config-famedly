@@ -35,5 +35,5 @@ nix run github:nix-community/plasma-manager > rc2nix-generated.nix
 ## System rebuild
 
 ```sh
-nixos-rebuild switch --sudo --flake .
+nixos-rebuild switch --sudo --diff --flake .
 ```
