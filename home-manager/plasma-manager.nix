@@ -115,4 +115,107 @@
       plasma-localerc.Formats.LC_TIME = "de_DE.UTF-8";
     };
   };
+
+  programs.konsole = {
+    enable = true;
+    defaultProfile = "home.profile";
+    customColorSchemes.srcery = {
+      Background.Color = "28,27,25";
+      BackgroundFaint.Color = "18,18,18";
+      BackgroundIntense.Color = "18,18,18";
+      Color0.Color = "28,27,25";
+      Color0Faint.Color = "28,27,25";
+      Color0Intense.Color = "145,129,117";
+      Color1.Color = "239,47,39";
+      Color1Faint.Color = "239,47,39";
+      Color1Intense.Color = "247,83,65";
+      Color2.Color = "81,159,80";
+      Color2Faint.Color = "81,159,80";
+      Color2Intense.Color = "152,188,55";
+      Color3.Color = "251,184,41";
+      Color3Faint.Color = "251,184,41";
+      Color3Intense.Color = "254,208,110";
+      Color4.Color = "44,120,191";
+      Color4Faint.Color = "44,120,191";
+      Color4Intense.Color = "104,168,228";
+      Color5.Color = "224,44,109";
+      Color5Faint.Color = "224,44,109";
+      Color5Intense.Color = "255,92,143";
+      Color6.Color = "10,174,179";
+      Color6Faint.Color = "10,174,179";
+      Color6Intense.Color = "43,228,208";
+      Color7.Color = "186,166,127";
+      Color7Faint.Color = "186,166,127";
+      Color7Intense.Color = "252,232,195";
+      Foreground.Color = "252,232,195";
+      ForegroundFaint.Color = "252,232,195";
+      ForegroundIntense.Color = "252,232,195";
+      General = {
+        Anchor = "0.5,0.5";
+        Blur = true;
+        ColorRandomization = false;
+        Description = "srcery";
+        FillStyle = "Tile";
+        Opacity = 0.85;
+        Wallpaper = "";
+        WallpaperFlipType = "NoFlip";
+        WallpaperOpacity = 1;
+      };
+    };
+    profiles.home = {
+      colorScheme = "srcery";
+      font = {
+        name = "FiraCode Nerd Font";
+        size = 11;
+      };
+      extraConfig = {
+        Appearance = {
+          BorderWhenActive = false;
+          DimmValue = 20;
+          FocusBorderColor = "81,159,80";
+          LineSpacing = 0;
+          TabColor = "20,22,24,0";
+        };
+        "Cursor Options".CursorShape = 0;
+        "Encoding Options".DefaultEncoding = "UTF-8";
+        General = {
+          AlternatingBars = 1;
+          DimWhenInactive = false;
+          ErrorBars = 1;
+          LocalTabTitleFormat = "%w";
+          RemoteTabTitleFormat = "%w";
+          ShowTerminalSizeHint = false;
+          TerminalCenter = true;
+          TerminalMargin = 2;
+        };
+        "Interaction Options" = {
+          CopyTextAsHTML = false;
+          WordCharacters = ":@-./_~?&=%+#";
+        };
+        Scrolling = {
+          HighlightScrolledLines = false;
+          HistoryMode = 2;
+          HistorySize = 10000;
+          MarkerSize = 2;
+          ScrollBarPosition = 2;
+        };
+        "Terminal Features".BlinkingCursorEnabled = false;
+      };
+    };
+    extraConfig = {
+      FileLocation = {
+        scrollbackUseCacheLocation = true;
+        scrollbackUseSystemLocation = false;
+      };
+      General.ConfigVersion = 1;
+      KonsoleWindow = {
+        RememberWindowSize = false;
+        ShowWindowTitleOnTitleBar = true;
+      };
+      MainWindow.MenuBar = "Disabled";
+      "Shortcut Schemes"."Current Scheme" = "home";
+      SplitView.SplitViewVisibility = "AlwaysHideSplitHeader";
+      TabBar.TabBarVisibility = "AlwaysShowTabBar";
+    };
+  };
 }
