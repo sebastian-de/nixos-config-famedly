@@ -166,6 +166,23 @@ in
   };
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
+  # BTRFS snapshots of /home via snapper.
+  # One-time prerequisite: btrfs subvolume create /home/.snapshots
+  services.snapper = {
+    persistentTimer = true;
+    configs.home = {
+      SUBVOLUME = "/home";
+      ALLOW_USERS = [ "sepp" ];
+      TIMELINE_CREATE = true;
+      TIMELINE_CLEANUP = true;
+      TIMELINE_LIMIT_HOURLY = 5;
+      TIMELINE_LIMIT_DAILY = 7;
+      TIMELINE_LIMIT_WEEKLY = 0;
+      TIMELINE_LIMIT_MONTHLY = 1;
+      TIMELINE_LIMIT_YEARLY = 0;
+    };
+  };
+
   # Enable libvirt daemon
   virtualisation.libvirtd = {
     enable = true;
