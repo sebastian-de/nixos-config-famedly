@@ -2,7 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   sources = import ./npins;
@@ -232,6 +236,11 @@ in
   ];
 
   programs.fish.enable = true;
+  # Drop NixOS's default ls alias.
+  programs.fish.shellAliases = lib.mkForce {
+    ll = "ls -l";
+    l = "ls -alh";
+  };
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -239,11 +248,7 @@ in
     defaultEditor = true;
   };
   programs.ssh.startAgent = false;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-qt;
-  };
+  # gpg-agent is managed by home-manager (services.gpg-agent in home-manager/home.nix)
 
   # Dedicated Chrome instance to log into captive portals without messing with DNS settings
   programs.captive-browser = {
