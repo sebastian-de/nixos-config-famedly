@@ -7,35 +7,33 @@ Nix configuration including settings for
 - [nixvim](https://github.com/nix-community/nixvim)
 
 
-This is a plain (non-flake) configuration. All external dependencies (nixpkgs, home-manager, plasma-manager, nixvim, nix-index-database) are pinned with [npins](https://github.com/andir/npins) in `npins/sources.json` and imported via `import ./npins` in `configuration.nix`. Channels are not used; the system `<nixpkgs>` and flake registry are pinned to the same source via `nixpkgs.flake.source`. Based on [this blog](https://jade.fyi/blog/pinning-nixos-with-npins/).
+This is a plain (non-flake) configuration. All external dependencies (nixpkgs, home-manager, plasma-manager, nixvim, nix-index-database) are pinned with [npins](https://github.com/andir/npins) in `npins/sources.json`. The build entry point is `system.nix`, which imports the pinned nixpkgs and loads `configuration.nix`. The system `<nixpkgs>` and flake registry are pinned to the same source via `nixpkgs.flake.source`. Based on [this blog](https://jade.fyi/blog/pinning-nixos-with-npins/).
 
 ## System rebuild
 
-The wrapper script constructs `NIX_PATH` (pinned nixpkgs + this repo's `configuration.nix`) at invocation time:
+Run from this repo's root. `--file .` loads the `system.nix` entry point (pinned nixpkgs + `configuration.nix`):
 
 ```sh
-./rebuild.sh
+nixos-rebuild switch --sudo --diff --file .
 ```
-
-Without arguments this runs `nixos-rebuild switch --sudo`.
 
 ## Validate config
 
 ```sh
-./rebuild.sh dry-build
+nixos-rebuild dry-build --file .
 ```
 
 ## Building a VM
 
 On NixOS:
 ```sh
-./rebuild.sh build-vm
+nixos-rebuild build-vm --file .
 ```
 
-On Non-NixOS (mirrors the NIX_PATH that `rebuild.sh` constructs):
+On Non-NixOS:
 
 ```sh
-nix-build '<nixpkgs/nixos>' -A vm -I nixpkgs="$(nix eval --raw -f ./npins/default.nix nixpkgs.outPath)" -I "nixos-config=$PWD/configuration.nix"
+nix-build ./system.nix -A vm
 ```
 
 The VM can than be run from `./result/bin/run-nixos-vm`
@@ -74,6 +72,6 @@ plasma-manager (`trunk`) and nix-index-database (`main`) are release-independent
 Then verify and activate:
 
 ```sh
-./rebuild.sh dry-build
-./rebuild.sh
+nixos-rebuild dry-build --file .
+nixos-rebuild switch --sudo --diff --file .
 ```

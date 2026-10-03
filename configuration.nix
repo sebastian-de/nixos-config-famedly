@@ -23,10 +23,11 @@ in
     "flakes"
   ];
 
+  # Channels are unused.
+  nix.channel.enable = false;
+
   # Pin <nixpkgs> and the nixpkgs flake registry entry to the npins-pinned
   # source, so nix-shell/nix run nixpkgs#... use the same nixpkgs as the system.
-  # nixos-config is deliberately not in NIX_PATH; use ./rebuild.sh, which
-  # constructs NIX_PATH at invocation time.
   nixpkgs.flake.source = sources.nixpkgs;
 
   home-manager.useGlobalPkgs = true;
