@@ -37,17 +37,9 @@
     format = "[$path ]($style)[$read_only]($read_only_style)";
     substitutions = {
       ".config" = " ";
-      Arbeit = "󰻡 ";
-      Bewerbungen = "󰉌 ";
-      Bilder = " ";
-      Dokumente = "󰲂 ";
+      Pictures = " ";
+      Documents = "󰲂 ";
       Downloads = " ";
-      Musik = "󰝚 ";
-      Netzwerk = " ";
-      Nextcloud = "󰅟 ";
-      Studium = " ";
-      Technik = " ";
-      Uni = " ";
     };
   };
   git_branch = {

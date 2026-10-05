@@ -4,7 +4,6 @@
 
 {
   pkgs,
-  lib,
   flake-inputs,
   ...
 }:
@@ -38,7 +37,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "burrito"; # Define your hostname.
-  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Enable NetWorkManager
   networking.networkmanager.enable = true;
@@ -71,7 +69,6 @@
       };
       default_session = {
         command = "${pkgs.greetd}/bin/agreety --cmd startplasma-wayland";
-        user = "greeter";
       };
     };
   };
@@ -83,6 +80,8 @@
     krdp
     oxygen
   ];
+  # KDE Partition Manager (registers the kpmcore polkit/D-Bus helper system-wide)
+  programs.partition-manager.enable = true;
 
   # Configure console keymap
   console.keyMap = "de-latin1-nodeadkeys";
@@ -201,15 +200,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    dnsmasq
     git
-    kdePackages.bluedevil
     nano
-    neovim
-    swtpm
   ];
 
   fonts.packages = with pkgs; [
@@ -219,19 +212,15 @@
   ];
 
   programs.fish.enable = true;
-  # Drop NixOS's default ls alias.
-  programs.fish.shellAliases = lib.mkForce {
-    ll = "ls -l";
-    l = "ls -alh";
-  };
+
   programs.neovim = {
     enable = true;
     vimAlias = true;
     viAlias = true;
     defaultEditor = true;
   };
+
   programs.ssh.startAgent = false;
-  # gpg-agent is managed by home-manager (services.gpg-agent in home-manager/home.nix)
 
   # Dedicated Chrome instance to log into captive portals without messing with DNS settings
   programs.captive-browser = {

@@ -118,7 +118,7 @@
 
   programs.konsole = {
     enable = true;
-    defaultProfile = "home.profile";
+    defaultProfile = "home";
     customColorSchemes.srcery = {
       Background.Color = "28,27,25";
       BackgroundFaint.Color = "18,18,18";
