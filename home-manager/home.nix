@@ -1,4 +1,9 @@
-{ pkgs, flake-inputs, ... }:
+{
+  pkgs,
+  config,
+  flake-inputs,
+  ...
+}:
 let
   unstable = flake-inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
@@ -6,6 +11,7 @@ in
   imports = [
     ./plasma-manager.nix
     ./nixvim.nix
+    ./thunderbird.nix
   ];
 
   # https://nix-community.github.io/home-manager/options.xhtml
@@ -21,6 +27,64 @@ in
 
   programs.home-manager.enable = true;
   programs.direnv.enable = true;
+
+  programs.firefox = {
+    enable = true;
+    # profile dir under ~/.config instead of ~/.mozilla
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
+    # https://github.com/corbindavenport/just-the-browser/blob/main/firefox/policies.json
+    policies = {
+      DisableFirefoxStudies = true;
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      FirefoxHome = {
+        SponsoredStories = false;
+        SponsoredTopSites = false;
+        Stories = false;
+      };
+      GenerativeAI = {
+        Enabled = false;
+        Chatbot = false;
+        LinkPreviews = false;
+        TabGroups = false;
+        Locked = false;
+      };
+      AIControls = {
+        Default = {
+          Value = "blocked";
+          Locked = false;
+        };
+        Translations = {
+          Value = "available";
+          Locked = false;
+        };
+        PDFAltText = {
+          Value = "available";
+          Locked = false;
+        };
+        SmartTabGroups = {
+          Value = "blocked";
+          Locked = false;
+        };
+        LinkPreviewKeyPoints = {
+          Value = "blocked";
+          Locked = false;
+        };
+        SidebarChatbot = {
+          Value = "blocked";
+          Locked = false;
+        };
+        SmartWindow = {
+          Value = "blocked";
+          Locked = false;
+        };
+      };
+      SearchEngines.Remove = [ "Perplexity" ];
+      IPProtectionAvailable = true;
+      FirefoxSuggest.SponsoredSuggestions = false;
+      VisualSearchEnabled = false;
+    };
+  };
 
   programs.fish = {
     enable = true;
@@ -417,6 +481,7 @@ in
       "text/calendar" = "thunderbird.desktop";
       "x-scheme-handler/mailto" = "thunderbird.desktop";
       "x-scheme-handler/mid" = "thunderbird.desktop";
+      "x-scheme-handler/net.thunderbird" = "thunderbird.desktop";
       "x-scheme-handler/news" = "thunderbird.desktop";
       "x-scheme-handler/nntp" = "thunderbird.desktop";
       "x-scheme-handler/snews" = "thunderbird.desktop";

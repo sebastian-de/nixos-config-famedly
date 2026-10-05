@@ -198,12 +198,6 @@
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Install thunderbrd.
-  programs.thunderbird.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
