@@ -78,6 +78,7 @@
     elisa
     kdepim-runtime
     krdp
+    kwin-x11
     oxygen
   ];
   # KDE Partition Manager (registers the kpmcore polkit/D-Bus helper system-wide)

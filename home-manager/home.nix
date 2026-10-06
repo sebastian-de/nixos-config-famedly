@@ -36,7 +36,6 @@ in
     openpgp-card-tools
     openssl
     p7zip
-    pcsc-tools
     ripgrep
     rsync
     scaleway-cli
@@ -143,6 +142,9 @@ in
     enable = true;
     # profile dir under ~/.config instead of ~/.mozilla
     configPath = "${config.xdg.configHome}/mozilla/firefox";
+    nativeMessagingHosts = [
+      pkgs.kdePackages.plasma-browser-integration
+    ];
     # https://github.com/corbindavenport/just-the-browser/blob/main/firefox/policies.json
     policies = {
       DisableFirefoxStudies = true;
