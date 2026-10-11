@@ -46,6 +46,7 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocales = [ "de_DE.UTF-8/UTF-8" ];
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_DE.UTF-8";
@@ -203,6 +204,9 @@
 
   environment.systemPackages = with pkgs; [
     git
+    hunspell
+    hunspellDicts.de_DE
+    hunspellDicts.en_US-large
     nano
   ];
 

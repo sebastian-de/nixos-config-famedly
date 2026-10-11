@@ -104,6 +104,16 @@
 
       klipperrc.General.MaxClipItems = 100;
 
+      "KDE/Sonnet.conf".General = {
+        autodetectLanguage = true;
+        backgroundCheckerEnabled = true;
+        checkUppercase = true;
+        checkerEnabledByDefault = true;
+        defaultLanguage = "de_DE";
+        preferredLanguages = "en_US, de_DE";
+        skipRunTogether = true;
+      };
+
       plasma-localerc.Formats.LANG = "en_US.UTF-8";
       plasma-localerc.Formats.LC_ADDRESS = "de_DE.UTF-8";
       plasma-localerc.Formats.LC_MEASUREMENT = "de_DE.UTF-8";

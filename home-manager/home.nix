@@ -142,6 +142,10 @@ in
     enable = true;
     # profile dir under ~/.config instead of ~/.mozilla
     configPath = "${config.xdg.configHome}/mozilla/firefox";
+    languagePacks = [
+      "en-US"
+      "de"
+    ];
     nativeMessagingHosts = [
       pkgs.kdePackages.plasma-browser-integration
     ];

@@ -20,6 +20,7 @@
         "mailnews.start_page.enabled" = false;
         # UI in English, fall back to German
         "intl.locale.requested" = "en-US,de";
+        "spellchecker.dictionary" = "en-US,de-DE";
       };
     };
 
