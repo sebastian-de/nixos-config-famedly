@@ -167,6 +167,12 @@
       TIMELINE_LIMIT_YEARLY = 0;
     };
   };
+  # Add persistent calendar trigger to the cleanup timer to ensure it runs
+  # at least daily (persistentTimer only applies to the snapshot timer).
+  systemd.timers.snapper-cleanup.timerConfig = {
+    OnCalendar = "daily";
+    Persistent = true;
+  };
 
   # Enable libvirt daemon
   virtualisation.libvirtd = {
