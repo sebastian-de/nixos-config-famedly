@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.nixvim = {
     enable = true;
@@ -112,6 +112,30 @@
       enable = true;
       highlight.enable = true;
       indent.enable = true;
+      # Restrict to the grammars actually used; the default is allGrammars
+      # (200+ parsers, slow to build). Names: nixpkgs vimPlugins.nvim-treesitter.builtGrammars
+      grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+        bash
+        diff
+        fish
+        gitcommit
+        gitignore
+        go
+        json
+        kdl
+        lua
+        markdown
+        markdown_inline
+        nix
+        python
+        regex
+        rust
+        toml
+        vim
+        vimdoc
+        xml
+        yaml
+      ];
     };
 
     plugins.which-key = {
