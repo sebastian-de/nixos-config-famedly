@@ -20,8 +20,24 @@
     "flakes"
   ];
 
+  # Point CLI nixpkgs lookups (nix run nixpkgs#…, nix-shell '<nixpkgs>')
+  # at the flake's nixpkgs instead of downloading a separate copy.
+  nix.registry.nixpkgs.flake = flake-inputs.nixpkgs;
+  nix.nixPath = [ "nixpkgs=${flake-inputs.nixpkgs}" ];
+  nix.channel.enable = false;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+  nix.settings.auto-optimise-store = true;
+
   # Enable nix-ld: https://wiki.nixos.org/wiki/Nix-ld
   programs.nix-ld.enable = true;
+
+  # Skip rebuilding the NixOS manual on every config change
+  documentation.nixos.enable = false;
 
   # see https://github.com/famedly/famedly-nixos#cachix
   famedly-cachix.enable = true;
@@ -31,10 +47,13 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # https://github.com/NixOS/nixpkgs/issues/576607
+  boot.initrd.kernelModules = [ "aesni_intel" ];
 
   networking.hostName = "burrito"; # Define your hostname.
 
