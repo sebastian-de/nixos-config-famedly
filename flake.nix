@@ -2,7 +2,7 @@
   description = "NixOS configuration for Famedly work laptop";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     famedly-nixos.url = "github:famedly/famedly-nixos";
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-26.05";
@@ -21,7 +21,7 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
   };
 
   outputs =
