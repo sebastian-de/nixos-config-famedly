@@ -132,6 +132,12 @@ in
   programs.direnv = {
     enable = true;
     # enableGitIntegration = true; # git globally ignores .direnv/
+    # Touch angrr GC roots on every load so active projects don't expire.
+    # The NixOS programs.direnv.angrr integration only applies to the system direnv.
+    stdlib = ''
+      source ${pkgs.angrr}/share/direnv/lib/angrr.sh
+      _angrr_auto_use "$@"
+    '';
   };
 
   programs.element-desktop.enable = true;

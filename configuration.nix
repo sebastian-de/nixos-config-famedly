@@ -26,6 +26,41 @@
   nix.nixPath = [ "nixpkgs=${flake-inputs.nixpkgs}" ];
   nix.channel.enable = false;
 
+  # https://github.com/linyinfeng/angrr
+  # Runs before nix-gc.service via enableNixGcIntegration (default with nix.gc.automatic)
+  services.angrr = {
+    enable = true;
+    settings = {
+      temporary-root-policies = {
+        direnv = {
+          path-regex = "/\\.direnv/";
+          period = "7d";
+        };
+        result = {
+          path-regex = "/result[^/]*$";
+          period = "3d";
+        };
+      };
+      profile-policies = {
+        system = {
+          profile-paths = [ "/nix/var/nix/profiles/system" ];
+          keep-since = "7d";
+          keep-latest-n = 5;
+          keep-booted-system = true;
+          keep-current-system = true;
+        };
+        user = {
+          profile-paths = [
+            "~/.local/state/nix/profiles/profile"
+            "~/.local/state/nix/profiles/home-manager"
+            "/nix/var/nix/profiles/per-user/root/profile"
+          ];
+          keep-since = "7d";
+          keep-latest-n = 5;
+        };
+      };
+    };
+  };
   nix.gc = {
     automatic = true;
     dates = "weekly";
