@@ -301,6 +301,8 @@
 
   # see https://github.com/nix-community/nix-index
   programs.nix-index.enable = true;
+  # nix-index replaces command-not-found; the two are mutually exclusive
+  programs.command-not-found.enable = false;
 
   # https://wiki.nixos.org/wiki/OBS_Studio
   programs.obs-studio = {
