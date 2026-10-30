@@ -15,6 +15,7 @@ in
     ./plasma-manager.nix
     ./nixvim.nix
     ./thunderbird.nix
+    ./zed.nix
   ];
 
   # https://nix-community.github.io/home-manager/options.xhtml
