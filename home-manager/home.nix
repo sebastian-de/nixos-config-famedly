@@ -40,6 +40,7 @@ in
     openpgp-card-tools
     openssl
     p7zip
+    python3
     ripgrep
     rsync
     scaleway-cli
@@ -55,6 +56,7 @@ in
     xz
     yq-go
     zip
+    zotero
 
     # nixos-unstable
     unstable.headlamp
