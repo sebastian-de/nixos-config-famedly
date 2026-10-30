@@ -1,11 +1,14 @@
 {
   pkgs,
+  lib,
   config,
   flake-inputs,
   ...
 }:
 let
   unstable = flake-inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  # LiteLLM model group used as default in VS Code chat
+  vscodeChatModel = "DeepSeek-V4.1-Flash";
 in
 {
   imports = [
@@ -444,15 +447,31 @@ in
       "disable-hardware-acceleration" = false;
       "enable-crash-reporter" = false;
       "crash-reporter-id" = "";
+      # lets the LiteLLM extension mark a default model, see litellm-vscode.nix
+      "enable-proposed-api" = [ "litellm.litellm-vscode" ];
     };
     # writable settings.json: on each switch the managed keys are merged
     # over the existing file.
     # profiles.default.mutableUserSettings = true;
     profiles.default.userSettings = {
-      "chat.disableAIFeatures" = true;
+      # chat without a Copilot login, models come from LiteLLM
+      "chat.allowAnonymousAccess" = true;
+      # built-in agents: Explore defaults to Copilot models, the others to the
+      # session model. Search and execution subagents only resolve Copilot
+      # model families and fall back to the session model when unset.
+      "chat.planAgent.defaultModel" = "${vscodeChatModel} (litellm)";
+      "chat.exploreAgent.defaultModel" = "${vscodeChatModel} (litellm)";
+      "github.copilot.chat.askAgent.model" = "${vscodeChatModel} (litellm)";
+      "github.copilot.chat.implementAgent.model" = "${vscodeChatModel} (litellm)";
+      # completions and next edit suggestions only run on Copilot models
+      "github.copilot.enable"."*" = false;
+      "github.copilot.nextEditSuggestions.enabled" = false;
       "editor.formatOnSave" = true;
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
+      # also keeps VS Code from rewriting the read-only argv.json: it syncs
+      # "enable-crash-reporter" with the telemetry level on every start
+      "telemetry.telemetryLevel" = "off";
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       charliermarsh.ruff
@@ -466,14 +485,51 @@ in
       rust-lang.rust-analyzer
       streetsidesoftware.code-spell-checker
       streetsidesoftware.code-spell-checker-german
+      # not on the Marketplace, built from source
+      (pkgs.callPackage ./litellm-vscode.nix { defaultModel = vscodeChatModel; })
       # not available via Nix, yet:
       # gruntwork.terragrunt-ls
       # opentofu.vscode-opentofu
       # streetsidesoftware.code-spell-checker-medical-terms
       # streetsidesoftware.code-spell-checker-scientific-terms
-      # tilt-dev.tiltfile
     ];
   };
+
+  # Chat model providers (Chat: Manage Language Models). VS Code writes into
+  # this file, so instead of a read-only symlink the managed entries are
+  # merged into the existing file, keeping keys VS Code added. The LiteLLM
+  # key is taken from opencode's auth.json and stored in plain text (see
+  # litellm-vscode.nix), hence the umask.
+  home.activation.vscodeChatLanguageModels =
+    let
+      managed = pkgs.writeText "chatLanguageModels.json" (
+        builtins.toJSON [
+          {
+            name = "Famedly AI Gateway";
+            vendor = "litellm";
+            baseUrl = "https://gateway.ai.famedly.dev";
+          }
+        ]
+      );
+    in
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      f="${config.xdg.configHome}/Code/User/chatLanguageModels.json"
+      auth="${config.xdg.dataHome}/opencode/auth.json"
+      [ -s "$auth" ] || auth=/dev/null
+      current='[]'
+      [ -s "$f" ] && current=$(cat "$f")
+      if merged=$(printf '%s' "$current" | ${lib.getExe pkgs.jq} --slurpfile managed ${managed} --slurpfile auth "$auth" '
+        ($auth[0].litellm.key // null) as $key
+        | reduce ($managed[0][] | if .vendor == "litellm" and $key then . + {apiKey: $key} else . end) as $m (.;
+          if any(.[]; .vendor == $m.vendor and .name == $m.name)
+          then map(if .vendor == $m.vendor and .name == $m.name then . + $m else . end)
+          else . + [$m] end)'); then
+        run mkdir -p "$(dirname "$f")"
+        [ -n "''${DRY_RUN:-}" ] || (umask 077; printf '%s\n' "$merged" > "$f"; chmod 600 "$f")
+      else
+        warnEcho "could not merge $f, left unchanged"
+      fi
+    '';
 
   programs.zellij = {
     enable = true;
