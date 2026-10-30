@@ -470,6 +470,7 @@ in
       "github.copilot.enable"."*" = false;
       "github.copilot.nextEditSuggestions.enabled" = false;
       "editor.formatOnSave" = true;
+      "editor.defaultFormatter" = "esbenp.prettier-vscode";
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
       # also keeps VS Code from rewriting the read-only argv.json: it syncs
@@ -478,6 +479,8 @@ in
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       charliermarsh.ruff
+      editorconfig.editorconfig
+      esbenp.prettier-vscode
       jnoortheen.nix-ide
       mkhl.direnv
       ms-kubernetes-tools.vscode-kubernetes-tools
