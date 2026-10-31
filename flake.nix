@@ -13,10 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +26,6 @@
       famedly-nixos,
       home-manager,
       plasma-manager,
-      nixvim,
       nix-index-database,
       unstable,
       ...
@@ -48,7 +43,6 @@
             home-manager.overwriteBackup = true;
             home-manager.sharedModules = [
               plasma-manager.homeModules.plasma-manager
-              nixvim.homeModules.nixvim
               nix-index-database.homeModules.default
             ];
             home-manager.extraSpecialArgs.flake-inputs = inputs;

@@ -10,7 +10,7 @@ in
 {
   imports = [
     ./plasma-manager.nix
-    ./nixvim.nix
+    ./neovim.nix
     ./thunderbird.nix
     ./zed.nix
   ];
