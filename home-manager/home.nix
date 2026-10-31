@@ -441,46 +441,6 @@ in
     settings = import ./starship-settings.nix;
   };
 
-  programs.vscode = {
-    enable = true;
-    argvSettings = {
-      "disable-hardware-acceleration" = false;
-      "enable-crash-reporter" = false;
-      "crash-reporter-id" = "";
-    };
-    # writable settings.json: on each switch the managed keys are merged
-    # over the existing file.
-    # profiles.default.mutableUserSettings = true;
-    profiles.default.userSettings = {
-      "chat.disableAIFeatures" = true;
-      "editor.formatOnSave" = true;
-      "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nil";
-    };
-    profiles.default.extensions = with pkgs.vscode-extensions; [
-      charliermarsh.ruff
-      editorconfig.editorconfig
-      esbenp.prettier-vscode
-      jnoortheen.nix-ide
-      mkhl.direnv
-      ms-kubernetes-tools.vscode-kubernetes-tools
-      ms-python.debugpy
-      ms-python.python
-      ms-python.vscode-python-envs
-      myriad-dreamin.tinymist
-      rust-lang.rust-analyzer
-      streetsidesoftware.code-spell-checker
-      streetsidesoftware.code-spell-checker-german
-      # not available via Nix, yet:
-      # gruntwork.terragrunt-ls
-      # opentofu.vscode-opentofu
-      # streetsidesoftware.code-spell-checker-medical-terms
-      # streetsidesoftware.code-spell-checker-scientific-terms
-      # tilt-dev.tiltfile
-    ];
-  };
-
   programs.zellij = {
     enable = true;
     settings = {
