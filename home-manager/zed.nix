@@ -121,7 +121,9 @@ in
       autosave.after_delay.milliseconds = 1000;
       buffer_font_family = "FiraCode Nerd Font";
       buffer_font_size = 15;
+      cli_default_open_behavior = "new_window";
       collaboration_panel.dock = "left";
+      edit_predictions.provider = "none";
       format_on_save = "on";
       git_panel.dock = "left";
       languages.Nix.language_servers = [
@@ -129,6 +131,10 @@ in
         "!nixd"
       ];
       markdown_preview.font_family = "Noto Sans";
+      minimap = {
+        max_width_columns = 70;
+        # show = "auto";
+      };
       outline_panel.dock = "left";
       project_panel.dock = "left";
       show_whitespaces = "selection";
@@ -138,6 +144,10 @@ in
         diagnostics = false;
         metrics = false;
       };
+      title_bar = {
+        show_branch_status_icon = true;
+        show_sign_in = false;
+      };
       theme = {
         mode = "system";
         light = "Ayu Light";
@@ -146,6 +156,7 @@ in
       ui_font_family = "Noto Sans";
       ui_font_size = 16;
       vim_mode = false;
+      which_key.enabled = true;
 
       # https://zed.dev/docs/ai/use-api-access#openai-compatible
       # The API key is entered once in the agent settings (agent: open
@@ -160,6 +171,7 @@ in
         enable_feedback = false;
         thinking_display = "always_collapsed";
         threads_sidebar = {
+          default_width = 240;
           position = "right";
         };
         use_modifier_to_send = true;
@@ -167,7 +179,7 @@ in
         # this, subagents and compaction to the thread's model
         default_model = {
           provider = "litellm";
-          model = "GLM-5.3-Flash";
+          model = "DeepSeek-V4.1-Flash";
           enable_thinking = true;
           effort = "high";
         };
