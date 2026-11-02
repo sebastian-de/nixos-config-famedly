@@ -27,6 +27,7 @@ in
     jq
     just
     kdePackages.kate
+    kdePackages.kwalletmanager
     kdePackages.okular
     kdePackages.plasma-nm
     kubectl
@@ -135,6 +136,9 @@ in
 
   programs.direnv = {
     enable = true;
+    # Cache devshells and GC-root flake inputs, so `use flake` doesn't
+    # re-fetch and re-evaluate on every load or after nix-gc.
+    nix-direnv.enable = true;
     # enableGitIntegration = true; # git globally ignores .direnv/
     # Touch angrr GC roots on every load so active projects don't expire.
     # The NixOS programs.direnv.angrr integration only applies to the system direnv.
@@ -265,6 +269,7 @@ in
       merge.conflictstyle = "zdiff3";
       diff.colorMoved = "default";
       push.autoSetupRemote = true;
+      remote.origin.prune = true;
     };
     ignores = [
       ".k8s"
