@@ -97,6 +97,7 @@ in
     defaultEditor = false;
 
     extensions = [
+      "ansible"
       "codebook"
       "github-actions"
       "helm"
@@ -104,8 +105,11 @@ in
       "opentofu"
     ];
 
-    # language servers from nixpkgs, binaries downloaded by Zed often fail on NixOS
+    # language servers and the tools they invoke, from nixpkgs; binaries
+    # downloaded by Zed often fail on NixOS
     extraPackages = with pkgs; [
+      ansible
+      ansible-lint
       basedpyright
       bubblewrap # for sandboxing
       codebook
@@ -124,6 +128,10 @@ in
       cli_default_open_behavior = "new_window";
       collaboration_panel.dock = "left";
       edit_predictions.provider = "none";
+      file_types.Ansible = [
+        "**/ansible-environment/**/*.yml"
+        "**/ansible-environment/**/*.yaml"
+      ];
       format_on_save = "on";
       git_panel.dock = "left";
       languages.Nix.language_servers = [
