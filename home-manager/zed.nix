@@ -2,9 +2,13 @@
   pkgs,
   lib,
   config,
+  flake-inputs,
   ...
 }:
 let
+  # nixos-unstable, same binding as in home.nix
+  unstable = flake-inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+
   # Famedly LiteLLM gateway, as in ~/.config/opencode/opencode.jsonc. Only
   # these models are allowed for our key (GET /v1/models).
   # max_tokens: context window
@@ -87,7 +91,7 @@ in
   programs.zed-editor = {
     enable = true;
     enableMcpIntegration = true;
-    package = pkgs.zed-editor;
+    package = unstable.zed-editor;
 
     # keep $EDITOR pointing at nvim (see configuration.nix), `e` in fish
     defaultEditor = false;
