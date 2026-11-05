@@ -21,6 +21,7 @@ in
   home.username = "sepp";
   home.homeDirectory = "/home/sepp";
   home.packages = with pkgs; [
+    bubblewrap
     chromium
     dnsutils
     hcloud
