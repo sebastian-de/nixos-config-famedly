@@ -187,6 +187,10 @@ in
           position = "right";
         };
         use_modifier_to_send = true;
+        tool_permissions = import ./zed-tool-permissions.nix;
+        sandbox_permissions = import ./zed-sandbox-permissions.nix {
+          inherit (config.home) homeDirectory;
+        };
         # inline assistant, commit messages and thread summaries fall back to
         # this, subagents and compaction to the thread's model
         default_model = {

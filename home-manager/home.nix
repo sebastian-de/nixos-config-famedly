@@ -323,6 +323,11 @@ in
     pinentry.package = pkgs.pinentry-qt;
   };
 
+  services.podman = {
+    enable = true;
+    settings.storage.storage.driver = "btrfs";
+  };
+
   # used by the fish function `p` to switch to a minimal prompt
   xdg.configFile."starship-simple.toml".source = ./starship-simple.toml;
 
