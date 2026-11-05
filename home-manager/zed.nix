@@ -132,6 +132,10 @@ in
         "**/ansible-environment/**/*.yml"
         "**/ansible-environment/**/*.yaml"
       ];
+      file_types.Helm = [
+        "**/charts/**/templates/**/*.yaml"
+        "**/charts/**/templates/**/*.yml"
+      ];
       format_on_save = "on";
       git_panel.dock = "left";
       languages.Nix.language_servers = [
