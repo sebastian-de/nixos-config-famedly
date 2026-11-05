@@ -67,6 +67,9 @@
     options = "--delete-older-than 14d";
   };
   nix.settings.auto-optimise-store = true;
+  # Run builds at idle CPU/IO priority so they don't starve interactive apps (e.g. call audio)
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
 
   # Enable nix-ld: https://wiki.nixos.org/wiki/Nix-ld
   programs.nix-ld.enable = true;
@@ -255,6 +258,9 @@
     extraGroups = [
       "libvirtd"
       "networkmanager"
+      # rtprio/nice/memlock limits from the PipeWire module, so PipeWire gets
+      # realtime priority without depending on rtkit/polkit session state
+      "pipewire"
       "wheel"
     ];
   };
