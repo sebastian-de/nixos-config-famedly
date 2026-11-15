@@ -101,6 +101,8 @@ in
       "codebook"
       "github-actions"
       "helm"
+      "html"
+      "just"
       "nix"
       "opentofu"
     ];
@@ -167,6 +169,7 @@ in
       };
       ui_font_family = "Noto Sans";
       ui_font_size = 16;
+      use_podman = true;
       vim_mode = false;
       which_key.enabled = true;
 
