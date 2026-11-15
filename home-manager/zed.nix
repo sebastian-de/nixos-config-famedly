@@ -52,6 +52,24 @@ let
       ];
 in
 {
+  # Zed loads agent skills from ~/.agents/skills, one directory per skill.
+  # Linked read-only from the flake.
+  home.file =
+    lib.mapAttrs'
+      (name: _: {
+        name = ".agents/skills/${name}";
+        value.source = flake-inputs.ponytail + "/skills/${name}";
+      })
+      (
+        lib.filterAttrs (_: type: type == "directory") (
+          builtins.readDir (flake-inputs.ponytail + "/skills")
+        )
+      )
+    // {
+      # local skill, kept in the repo
+      ".agents/skills/simplify".source = ./skills/simplify;
+    };
+
   # MCP servers as in ~/.config/opencode/opencode.jsonc. Notion and Atlassian
   # ask for an OAuth login on first use. The Grafana service account tokens are
   # read from ~/.config/mcp/<name>.token when the server starts, so they stay

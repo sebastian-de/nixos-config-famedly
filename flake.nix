@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    # agent skills for Zed, not a flake
+    ponytail = {
+      url = "github:DietrichGebert/ponytail";
+      flake = false;
+    };
   };
 
   outputs =
