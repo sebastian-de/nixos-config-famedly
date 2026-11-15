@@ -34,6 +34,7 @@ in
     kubectl
     kubelogin-oidc
     kubernetes-helm
+    mcp-nixos
     nil
     nixfmt
     mpv

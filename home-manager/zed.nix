@@ -101,6 +101,7 @@ in
         terragrunt-docs.url = "https://mcp.docs.terragrunt.com/mcp";
         grafana-k8s = grafana "grafana-k8s" "https://grafana.monitoring.cloud.famedly.net";
         grafana-ansible = grafana "grafana-ansible" "https://graph.famedly.de";
+        nixos.command = "mcp-nixos";
       };
   };
 
