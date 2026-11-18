@@ -45,6 +45,7 @@ in
     ripgrep
     rsync
     scaleway-cli
+    sequoia-sq
     talos-pilot
     talosctl
     typst
