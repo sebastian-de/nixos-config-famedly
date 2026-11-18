@@ -43,5 +43,12 @@
   ];
   write_paths = [
     "${homeDirectory}/src"
+    # Subagents persist durable findings into their skill's references/ dir.
+    # write_paths are subtree grants without glob support, so each one is
+    # listed. Add an entry when a new skill gets a references/ directory.
+    "${homeDirectory}/.agents/skills/grafana-ansible-observability/references"
+    "${homeDirectory}/.agents/skills/grafana-k8s-observability/references"
+    "${homeDirectory}/.agents/skills/jira-issue-search/references"
+    "${homeDirectory}/.agents/skills/notion-context-search/references"
   ];
 }

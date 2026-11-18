@@ -165,6 +165,10 @@ in
         "**/charts/**/templates/**/*.yml"
       ];
       format_on_save = "on";
+      git.auto_fetch = {
+        enabled = true;
+        interval_secs = 120;
+      };
       git_panel.dock = "left";
       languages.Nix.language_servers = [
         "nil"
@@ -208,9 +212,10 @@ in
         available_models = litellmModels;
       };
       agent = {
+        default_profile = "write";
         dock = "right";
         enable_feedback = false;
-        thinking_display = "always_collapsed";
+        thinking_display = "preview";
         threads_sidebar = {
           default_width = 240;
           position = "right";
@@ -226,6 +231,13 @@ in
           provider = "litellm";
           model = "DeepSeek-V4.1-Flash";
           enable_thinking = true;
+          effort = "high";
+        };
+      };
+      agent_servers.claude-acp = {
+        type = "registry";
+        default_config_options = {
+          mode = "auto";
           effort = "high";
         };
       };
