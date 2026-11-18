@@ -60,6 +60,7 @@ in
     zotero
 
     # nixos-unstable
+    unstable.codebase-memory-mcp
     unstable.headlamp
     unstable.opencode
   ];

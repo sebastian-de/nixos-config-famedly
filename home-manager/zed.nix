@@ -66,8 +66,14 @@ in
         )
       )
     // {
-      # local skill, kept in the repo
+      # local skills, kept in the repo
       ".agents/skills/simplify".source = ./skills/simplify;
+      # verbatim copy of the `skill_content` literal in DeusData/codebase-memory-mcp
+      # src/cli/cli.c at tag v0.12.1, which upstream's `install` command writes as
+      # <skills-root>/codebase-memory/SKILL.md. nixpkgs patches that command out
+      # (remove-install-update.diff), and the vendored skill does not follow the
+      # binary, so re-extract it when bumping `unstable.codebase-memory-mcp`.
+      ".agents/skills/codebase-memory".source = ./skills/codebase-memory;
     };
 
   # MCP servers as in ~/.config/opencode/opencode.jsonc. Notion and Atlassian
@@ -102,6 +108,7 @@ in
         grafana-k8s = grafana "grafana-k8s" "https://grafana.monitoring.cloud.famedly.net";
         grafana-ansible = grafana "grafana-ansible" "https://graph.famedly.de";
         nixos.command = "mcp-nixos";
+        codebase-memory-mcp.command = "codebase-memory-mcp";
       };
   };
 
