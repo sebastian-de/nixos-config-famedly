@@ -250,6 +250,14 @@
   '';
   programs.virt-manager.enable = true;
 
+  # Needed for terraform-provider-talos acceptance tests
+  systemd.tmpfiles.rules = [
+    "L+ /usr/share/OVMF/OVMF_CODE_4M.fd - - - - ${pkgs.OVMF.firmware}"
+    "L+ /usr/share/OVMF/OVMF_VARS_4M.fd - - - - ${pkgs.OVMF.variables}"
+    "L+ /usr/share/OVMF/OVMF_CODE.fd - - - - ${pkgs.OVMF.firmware}"
+    "L+ /usr/share/OVMF/OVMF_VARS.fd - - - - ${pkgs.OVMF.variables}"
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sepp = {
     isNormalUser = true;
